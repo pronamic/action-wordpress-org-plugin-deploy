@@ -21,6 +21,12 @@ inputs:
 
       https://developer.wordpress.org/plugins/wordpress-org/how-to-use-subversion/
     required: true
+  tag:
+    description: >
+      Release tag name.
+
+      https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases
+    required: true
   wp-slug:
     description: >
       WordPress plugin slug.
@@ -37,4 +43,5 @@ runs:
       env:
         INPUT_SVN-USERNAME: ${{ inputs.svn-username }}
         INPUT_SVN-PASSWORD: ${{ inputs.svn-password }}
+        INPUT_TAG: ${{ inputs.tag }}
         INPUT_WP-SLUG: ${{ inputs.wp-slug }}
