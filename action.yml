@@ -1,0 +1,40 @@
+name: 'WordPress.org plugin release'
+description: 'Deploy release to the WordPress plugin directory.'
+author: 'pronamic'
+
+branding:
+  icon: 'upload-cloud'
+  color: 'orange'
+
+inputs:
+  svn-username:
+    description: >
+      WordPress plugin directory Subversion username, remember your username is case sensitive.
+
+      https://developer.wordpress.org/plugins/wordpress-org/how-to-use-subversion/
+    required: true
+  svn-password:
+    description: >
+      WordPress plugin directory Subversion password.
+
+      If you need to reset your password, go to [login.wordpress.org](https://login.wordpress.org/).
+
+      https://developer.wordpress.org/plugins/wordpress-org/how-to-use-subversion/
+    required: true
+  wp-slug:
+    description: >
+      WordPress plugin slug.
+
+      https://developer.wordpress.org/plugins/wordpress-org/plugin-developer-faq/#what-will-my-plugin-permalink-slug-be
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - id: deploy
+      run: php ${{ github.action_path }}/release.php
+      shell: bash
+      env:
+        INPUT_SVN-USERNAME: ${{ inputs.svn-username }}
+        INPUT_SVN-PASSWORD: ${{ inputs.svn-password }}
+        INPUT_WP-SLUG: ${{ inputs.wp-slug }}
