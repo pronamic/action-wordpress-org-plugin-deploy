@@ -35,7 +35,6 @@ runs:
       run: php ${{ github.action_path }}/release.php
       shell: bash
       env:
-        REPOSITORY: ${{ github.repository }}
         INPUT_SVN-USERNAME: ${{ inputs.svn-username }}
         INPUT_SVN-PASSWORD: ${{ inputs.svn-password }}
         INPUT_WP-SLUG: ${{ inputs.wp-slug }}
