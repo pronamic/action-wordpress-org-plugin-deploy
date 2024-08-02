@@ -77,7 +77,9 @@ $svn_password = get_required_input( 'svn-password' );
 
 $slug = get_required_input( 'wp-slug' );
 
-$version = '1.0.0';
+$tag = get_required_input( 'tag' );
+
+$version = ltrim( $tag, 'v' );
 
 $svn_url = "https://plugins.svn.wordpress.org/$slug";
 
@@ -123,13 +125,22 @@ echo '• ', escape_sequence( '1' ), 'Subversion password:', escape_sequence( '0
 end_group();
 
 /**
+ * GitHub release.
+ */
+start_group( '🐙 Check GitHub release' );
+
+run_command( "gh release view $tag --repo $repository" );
+
+end_group();
+
+/**
  * Download release.
  *
  * @link https://cli.github.com/manual/gh_release_download
  */
 start_group( '📥 Download plugin' );
 
-run_command( "gh release download --pattern '$filename' --dir $archives_dir --repo $repository" );
+run_command( "gh release download $tag --pattern '$filename' --dir $archives_dir --repo $repository" );
 
 end_group();
 
