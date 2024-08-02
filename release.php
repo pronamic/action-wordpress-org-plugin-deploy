@@ -15,14 +15,16 @@ function format_error( $value ) {
 	return escape_sequence( '31' ) . escape_sequence( '1' ) . 'Error:' . escape_sequence( '0' ) . ' ' . $value;
 }
 
-function run_command( $command ) {
+function run_command( $command, $expected_result_code = 0 ) {
 	echo format_command( $command ), PHP_EOL;
 
 	passthru( $command, $result_code );
 
-	if ( 0 !== $result_code ) {
+	if ( null !== $expected_result_code && $expected_result_code !== $result_code ) {
 		exit( $result_code );
 	}
+
+	return $result_code;
 }
 
 function start_group( $name ) {
@@ -77,6 +79,8 @@ mkdir( $svn_dir );
 
 $plugin_dir = $plugins_dir . '/' . $slug;
 
+$readme_file = $plugin_dir . '/readme.txt';
+
 /**
  * Download release.
  *
@@ -104,11 +108,38 @@ run_command(
 end_group();
 
 /**
+ * Parse stable tag.
+ */
+$readme_content = file_get_contents( $readme_file );
+
+$pattern = "/Stable tag: (.*)/";
+
+$stable_tag = '';
+
+if ( 1 === preg_match( $pattern, $readme_content, $matches ) ) {
+	$stable_tag = $matches[1];
+}
+
+if ( $stable_tag !== $version ) {
+	echo 'Stable tag in readme.txt is not equal to release version.';
+
+	exit( 1 );
+}
+
+/**
  * Check tag existence.
  */
 start_group( '🔎 Check tag existence' );
 
-run_command( "svn info $svn_url/tags/$version" );
+$svn_url_tag = "$svn_url/tags/$version";
+
+$result_code = run_command( "svn info $svn_url_tag", null );
+
+if ( 0 === $result_code ) {
+	echo "There is already a tag for version $version:. $svn_url_tag";
+
+	exit( 1 );
+}
 
 end_group();
 
@@ -119,13 +150,13 @@ end_group();
  */
 start_group( '⬇ Subversion checkout WordPress.org' );
 
-run_command( "svn checkout $svn_url $svn_dir --depth=immediates" );
+run_command( "svn checkout $svn_url $svn_dir --depth immediates" );
 
 run_command( "cd $svn_dir" );
 
 chdir( $svn_dir );
 
-run_command( 'svn update trunk --depth=infinity' );
+run_command( 'svn update trunk --set-depth infinity' );
 
 end_group();
 
@@ -147,7 +178,6 @@ run_command(
 
 end_group();
 
-
 /**
  * Subversion modifications.
  */
@@ -157,6 +187,64 @@ run_command( 'svn status' );
 
 $output = shell_exec( 'svn status --xml' );
 
-echo $output;
+$xml = simplexml_load_string( $output );
+
+if ( false === $xml ) {
+	echo 'A problem occurred while reading the `svn status --xml`.';
+
+	exit( 1 );
+}
+
+foreach ( $xml->target->entry as $entry ) {
+	$path = (string) $entry['path'];
+
+	$wc_status = (string) $entry->{'wc-status'}['item'];
+
+	switch ( $wc_status ) {
+		case 'missing':
+			run_command( "svn rm $path" );
+
+			break;
+		case 'modified';
+			// Modified entry will be commited.
+
+			break;
+		case 'unversioned':
+			run_command( "svn add $path" );
+
+			break;
+		default:
+			echo "Unsupport working copy status: $wc_status - $path.";
+
+			exit( 1 );
+	}
+}
+
+end_group();
+
+/**
+ * Commit.
+ */
+start_group( '⬆ Subversion commit WordPress.org' );
+
+run_command( "svn commit --message 'Update' --non-interactive --username '$svn_username' --password '$svn_password'" );
+
+end_group();
+
+/**
+ * Tag.
+ */
+start_group( '🏷️ Subversion tag WordPress.org' );
+
+run_command( "svn cp $svn_url/trunk $svn_url/tags/$version --message 'Tagging version $version' --non-interactive --username '$svn_username' --password '$svn_password'" );
+
+end_group();
+
+/**
+ * Clean up.
+ */
+start_group( '🗑️ Clean up' );
+
+run_command( "rm -f -R $work_dir" );
 
 end_group();
