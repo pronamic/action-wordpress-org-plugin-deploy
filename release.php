@@ -127,7 +127,7 @@ chdir( $svn_dir );
 
 run_command( 'svn update trunk --depth=infinity' );
 
-end_group()
+end_group();
 
 /**
  * Synchronize.
