@@ -43,11 +43,11 @@ $repository = getenv( 'GITHUB_REPOSITORY' );
 /**
  * Setup.
  */
-$wp_slug = 'pronamic-pay-with-rabo-smart-pay-for-woocommerce';
+$slug = 'pronamic-pay-with-rabo-smart-pay-for-woocommerce';
 
 $version = '1.0.0';
 
-$svn_url = "https://plugins.svn.wordpress.org/$wp_slug";
+$svn_url = "https://plugins.svn.wordpress.org/$slug";
 
 /**
  * Filename.
@@ -75,7 +75,7 @@ mkdir( $archives_dir );
 mkdir( $plugins_dir );
 mkdir( $svn_dir );
 
-$plugin_dir = $plugins_dir . '/' . $wp_slug;
+$plugin_dir = $plugins_dir . '/' . $slug;
 
 /**
  * Download release.
