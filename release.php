@@ -36,6 +36,33 @@ function end_group() {
 }
 
 /**
+ * Get input.
+ * 
+ * @link https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#inputs
+ * @link https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepswith
+ * @link https://github.com/actions/checkout/blob/cd7d8d697e10461458bc61a30d094dc601a8b017/dist/index.js#L2699-L2717
+ * @param string $name
+ * @return string|array|false
+ */
+function get_input( $name ) {
+	$env_name = 'INPUT_' . strtoupper( $name );
+
+	return getenv( $env_name );
+}
+
+function get_required_input( $name ) {
+	$value = get_input( $name );
+
+	if ( false === $value || '' === $value ) {
+		echo format_error( escape_sequence( '90' ) . 'Input required and not supplied:' . escape_sequence( '0' ) . ' ' . $name );
+
+		exit( 1 );
+	}
+
+	return $value;
+}
+
+/**
  * Default environment variables.
  * 
  * @link https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/variables#default-environment-variables
@@ -45,7 +72,10 @@ $repository = getenv( 'GITHUB_REPOSITORY' );
 /**
  * Setup.
  */
-$slug = 'pronamic-pay-with-rabo-smart-pay-for-woocommerce';
+$svn_username = get_required_input( 'svn-username' );
+$svn_password = get_required_input( 'svn-password' );
+
+$slug = get_required_input( 'wp-slug' );
 
 $version = '1.0.0';
 
@@ -80,6 +110,17 @@ mkdir( $svn_dir );
 $plugin_dir = $plugins_dir . '/' . $slug;
 
 $readme_file = $plugin_dir . '/readme.txt';
+
+/**
+ * Start.
+ */
+start_group( 'ℹ️ Release to WordPress.org' );
+
+echo '• ', escape_sequence( '1' ), 'Subversion URL:', escape_sequence( '0' ), ' ', $svn_url, PHP_EOL;
+echo '• ', escape_sequence( '1' ), 'Subversion username:', escape_sequence( '0' ), ' ', $svn_username, PHP_EOL;
+echo '• ', escape_sequence( '1' ), 'Subversion password:', escape_sequence( '0' ), ' ', $svn_password, PHP_EOL;
+
+end_group();
 
 /**
  * Download release.
