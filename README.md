@@ -10,6 +10,17 @@ This GitHub action simplifies deploying your WordPress plugin directly in the Wo
 
 Leveraging PHP instead of bash scripting, this action caters to the preferences of many WordPress developers, offering a familiar and potentially more convenient workflow.
 
+## Usage
+
+### Inputs
+
+| Input | Required? | Default | Description |
+| ----- | --------- | ------- | ----------- |
+| `username` | `true` | `${{ inputs.username || vars.WORDPRESS_ORG_USERNAME || secrets.WORDPRESS_ORG_USERNAME }}` | WordPress plugin directory Subversion username, remember your username is case sensitive. |
+| `password` | `true` | `${{ inputs.password || secrets.WORDPRESS_ORG_PASSWORD }}` | WordPress plugin directory Subversion password. |
+| `tag` | `true` | `${{ inputs.tag || github.event.release.tag_name }}` | Release tag name. |
+| `slug` | `true` | `${{ inputs.slug || vars.WORDPRESS_PLUGIN_SLUG }}` | WordPress plugin slug. |
+
 ## Example
 
 ```yml
