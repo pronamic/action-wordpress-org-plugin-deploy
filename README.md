@@ -53,6 +53,7 @@ jobs:
   - https://github.com/10up/action-wordpress-plugin-asset-update
 - https://github.com/marketplace/actions/deploy-to-wordpress-org-svn-repository
   - https://github.com/richard-muvirimi/deploy-wordpress-plugin
+- https://github.com/actions/deploy-pages
 
 ## Development
 
