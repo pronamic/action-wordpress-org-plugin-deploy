@@ -54,6 +54,7 @@ jobs:
 - https://github.com/marketplace/actions/deploy-to-wordpress-org-svn-repository
   - https://github.com/richard-muvirimi/deploy-wordpress-plugin
 - https://github.com/actions/deploy-pages
+- https://github.com/actions/upload-pages-artifact
 
 ## Development
 
