@@ -41,7 +41,7 @@ jobs:
         with:
           username: pronamic
           password: ${{ secrets.SVN_PASSWORD }}
-          tag: ${{ inputs.tag || github.ref_name }}
+          tag: ${{ inputs.tag || github.event.release.tag_name }}
           slug: salesfeed
 ```
 
