@@ -19,7 +19,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Tag to release to WordPress.org'
+        description: 'Tag to deploy to WordPress.org'
         required: true
         type: string
   release:
