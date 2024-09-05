@@ -72,10 +72,10 @@ $repository = getenv( 'GITHUB_REPOSITORY' );
 /**
  * Setup.
  */
-$svn_username = get_required_input( 'svn-username' );
-$svn_password = get_required_input( 'svn-password' );
+$username = get_required_input( 'username' );
+$password = get_required_input( 'password' );
 
-$slug = get_required_input( 'wp-slug' );
+$slug = get_required_input( 'slug' );
 
 $tag = get_required_input( 'tag' );
 
@@ -119,8 +119,8 @@ $readme_file = $plugin_dir . '/readme.txt';
 start_group( 'ℹ️ Release to WordPress.org' );
 
 echo '• ', escape_sequence( '1' ), 'Subversion URL:', escape_sequence( '0' ), ' ', $svn_url, PHP_EOL;
-echo '• ', escape_sequence( '1' ), 'Subversion username:', escape_sequence( '0' ), ' ', $svn_username, PHP_EOL;
-echo '• ', escape_sequence( '1' ), 'Subversion password:', escape_sequence( '0' ), ' ', $svn_password, PHP_EOL;
+echo '• ', escape_sequence( '1' ), 'Subversion username:', escape_sequence( '0' ), ' ', $username, PHP_EOL;
+echo '• ', escape_sequence( '1' ), 'Subversion password:', escape_sequence( '0' ), ' ', $password, PHP_EOL;
 
 end_group();
 
@@ -279,7 +279,7 @@ end_group();
  */
 start_group( '⬆ Subversion commit WordPress.org' );
 
-run_command( "svn commit --message 'Update' --non-interactive --username '$svn_username' --password '$svn_password'" );
+run_command( "svn commit --message 'Update' --non-interactive --username '$username' --password '$password'" );
 
 end_group();
 
@@ -288,7 +288,7 @@ end_group();
  */
 start_group( '🏷️ Subversion tag WordPress.org' );
 
-run_command( "svn cp $svn_url/trunk $svn_url/tags/$version --message 'Tagging version $version' --non-interactive --username '$svn_username' --password '$svn_password'" );
+run_command( "svn cp $svn_url/trunk $svn_url/tags/$version --message 'Tagging version $version' --non-interactive --username '$username' --password '$password'" );
 
 end_group();
 

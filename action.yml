@@ -1,4 +1,4 @@
-name: 'WordPress.org plugin release'
+name: 'WordPress.org plugin deploy'
 description: 'Deploy release to the WordPress plugin directory.'
 author: 'pronamic'
 
@@ -7,13 +7,13 @@ branding:
   color: 'orange'
 
 inputs:
-  svn-username:
+  username:
     description: >
       WordPress plugin directory Subversion username, remember your username is case sensitive.
 
       https://developer.wordpress.org/plugins/wordpress-org/how-to-use-subversion/
     required: true
-  svn-password:
+  password:
     description: >
       WordPress plugin directory Subversion password.
 
@@ -28,7 +28,7 @@ inputs:
       Without an explicit tag name argument, the latest release in the project is used.
 
       https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases
-  wp-slug:
+  slug:
     description: >
       WordPress plugin slug.
 
@@ -39,10 +39,10 @@ runs:
   using: 'composite'
   steps:
     - id: deploy
-      run: php ${{ github.action_path }}/release.php
+      run: php ${{ github.action_path }}/deploy.php
       shell: bash
       env:
-        INPUT_SVN-USERNAME: ${{ inputs.svn-username }}
-        INPUT_SVN-PASSWORD: ${{ inputs.svn-password }}
+        INPUT_USERNAME: ${{ inputs.username }}
+        INPUT_PASSWORD: ${{ inputs.password }}
         INPUT_TAG: ${{ inputs.tag }}
-        INPUT_WP-SLUG: ${{ inputs.wp-slug }}
+        INPUT_SLUG: ${{ inputs.slug }}
