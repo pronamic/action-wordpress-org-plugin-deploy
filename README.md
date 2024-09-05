@@ -16,10 +16,10 @@ Leveraging PHP instead of bash scripting, this action caters to the preferences 
 
 | Input | Required? | Default | Description |
 | ----- | --------- | ------- | ----------- |
-| `username` | `true` | `${{ inputs.username || vars.WORDPRESS_ORG_USERNAME || secrets.WORDPRESS_ORG_USERNAME }}` | WordPress plugin directory Subversion username, remember your username is case sensitive. |
-| `password` | `true` | `${{ inputs.password || secrets.WORDPRESS_ORG_PASSWORD }}` | WordPress plugin directory Subversion password. |
-| `tag` | `true` | `${{ inputs.tag || github.event.release.tag_name }}` | Release tag name. |
-| `slug` | `true` | `${{ inputs.slug || vars.WORDPRESS_PLUGIN_SLUG }}` | WordPress plugin slug. |
+| `username` | `true` | `${{ vars.WORDPRESS_ORG_USERNAME  }}` | WordPress plugin directory Subversion username, remember your username is case sensitive. |
+| `password` | `true` | `${{ secrets.WORDPRESS_ORG_PASSWORD }}` | WordPress plugin directory Subversion password. |
+| `tag` | `true` | `${{ github.event.release.tag_name }}` | Release tag name. |
+| `slug` | `true` | `${{ vars.WORDPRESS_PLUGIN_SLUG }}` | WordPress plugin slug. |
 
 ## Example
 
