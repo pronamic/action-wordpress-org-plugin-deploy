@@ -21,8 +21,6 @@ inputs:
       If you need to reset your password, go to [login.wordpress.org](https://login.wordpress.org/).
 
       https://developer.wordpress.org/plugins/wordpress-org/how-to-use-subversion/
-
-      If this input is missing, this action will attempt to retrieve the username from the `WORDPRESS_ORG_PASSWORD` secret, which can be configured at the organization, repository, or environment level.
   tag:
     description: >
       Release tag name.
@@ -36,8 +34,6 @@ inputs:
 
       https://developer.wordpress.org/plugins/wordpress-org/plugin-developer-faq/#what-will-my-plugin-permalink-slug-be
 
-      If this input is missing, this action will attempt to retrieve the username from the `WORDPRESS_PLUGIN_SLUG` variable, which can be configured at the organization, repository, or environment level.
-
 runs:
   using: 'composite'
   steps:
@@ -45,7 +41,7 @@ runs:
       run: php ${{ github.action_path }}/deploy.php
       shell: bash
       env:
-        INPUT_USERNAME: ${{ inputs.username || vars.WORDPRESS_ORG_USERNAME || secrets.WORDPRESS_ORG_USERNAME }}
-        INPUT_PASSWORD: ${{ inputs.password || secrets.WORDPRESS_ORG_PASSWORD }}
-        INPUT_TAG: ${{ inputs.tag || github.event.release.tag_name }}
-        INPUT_SLUG: ${{ inputs.slug || vars.WORDPRESS_PLUGIN_SLUG }}
+        INPUT_USERNAME: ${{ inputs.username }}
+        INPUT_PASSWORD: ${{ inputs.password }}
+        INPUT_TAG: ${{ inputs.tag }}
+        INPUT_SLUG: ${{ inputs.slug }}
