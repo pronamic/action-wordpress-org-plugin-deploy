@@ -59,7 +59,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          username: ${{ vars.WORDPRESS_ORG_PRONAMIC_USERNAME  }}
+          username: ${{ vars.WORDPRESS_ORG_PRONAMIC_USERNAME }}
           password: ${{ secrets.WORDPRESS_ORG_PRONAMIC_PASSWORD }}
           tag: ${{ inputs.tag || github.event.release.tag_name }}
           slug: salesfeed
