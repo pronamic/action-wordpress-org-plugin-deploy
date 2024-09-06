@@ -10,6 +10,20 @@ This GitHub action simplifies deploying your WordPress plugin directly in the Wo
 
 Leveraging PHP instead of bash scripting, this action caters to the preferences of many WordPress developers, offering a familiar and potentially more convenient workflow.
 
+## Usage
+
+For the WordPress.org login details it can be useful to create a variable and secret at organization level. For Pronamic we work with the following variables:
+
+```
+${{ vars.WORDPRESS_ORG_PRONAMIC_USERNAME  }}
+```
+
+```
+${{ secrets.WORDPRESS_ORG_PRONAMIC_PASSWORD }}
+```
+
+This way, the WordPress login details can be managed in one place and you don't have to do this per repository or environment.
+
 ## Example
 
 ```yml
@@ -39,8 +53,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          username: pronamic
-          password: ${{ secrets.SVN_PASSWORD }}
+          username: ${{ vars.WORDPRESS_ORG_PRONAMIC_USERNAME  }}
+          password: ${{ secrets.WORDPRESS_ORG_PRONAMIC_PASSWORD }}
           tag: ${{ inputs.tag || github.event.release.tag_name }}
           slug: salesfeed
 ```
