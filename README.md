@@ -12,6 +12,8 @@ Leveraging PHP instead of bash scripting, this action caters to the preferences 
 
 ## Usage
 
+### Actions secrets and variables
+
 For the WordPress.org login details it can be useful to create a variable and secret at organization level. For Pronamic we work with the following variables:
 
 ```
@@ -23,6 +25,10 @@ ${{ secrets.WORDPRESS_ORG_PRONAMIC_PASSWORD }}
 ```
 
 This way, the WordPress login details can be managed in one place and you don't have to do this per repository or environment.
+
+![Screenshot of GitHub organization actions variables settings.](documentation/github.com_organizations_pronamic_settings_variables.png)
+
+![Screenshot of GitHub organization actions secrets settings.](documentation/github.com_organizations_pronamic_settings_secrets.png)
 
 ## Example
 
