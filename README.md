@@ -38,7 +38,7 @@ The WordPress.org plugin directory can be seen as an environment where the plugi
 
 ![Screenshot of GitHub repository environments settings.](documentation/github.com_pronamic_wp-salesfeed_settings_environments.png)
 
-![Screenshot of GitHub repository homepage deployments.](documentation/github.com_pronamic_wp-salesfeed_home_deployments.png)
+<img alt="Screenshot of GitHub repository homepage deployments." src="documentation/github.com_pronamic_wp-salesfeed_home_deployments.png" width="296">
 
 ## Example
 
