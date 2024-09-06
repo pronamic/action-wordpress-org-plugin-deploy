@@ -28,11 +28,11 @@ ${{ secrets.WORDPRESS_ORG_PRONAMIC_PASSWORD }}
 
 This way, the WordPress login details can be managed in one place and you don't have to do this per repository or environment.
 
-#### Screenshot of GitHub organization actions variables settings.
+#### Screenshot of GitHub organization actions variables settings
 
 ![Screenshot of GitHub organization actions variables settings.](documentation/github.com_organizations_pronamic_settings_variables.png)
 
-#### Screenshot of GitHub organization actions secrets settings.
+#### Screenshot of GitHub organization actions secrets settings
 
 ![Screenshot of GitHub organization actions secrets settings.](documentation/github.com_organizations_pronamic_settings_secrets.png)
 
@@ -40,11 +40,11 @@ This way, the WordPress login details can be managed in one place and you don't 
 
 The WordPress.org plugin directory can be seen as an environment where the plugin in a GitHub repository can be deployed to. The advantage of this is that GitHub shows the deployments to the WordPress.org plugin directory. And with protection rules you can delay the deployment to WordPres.org until after approval by 1 or more GitHub users.
 
-#### Screenshot of GitHub repository environments settings.
+#### Screenshot of GitHub repository environments settings
 
 ![Screenshot of GitHub repository environments settings.](documentation/github.com_pronamic_wp-salesfeed_settings_environments.png)
 
-#### Screenshot of GitHub repository homepage deployments.
+#### Screenshot of GitHub repository homepage deployments
 
 <img alt="Screenshot of GitHub repository homepage deployments." src="documentation/github.com_pronamic_wp-salesfeed_home_deployments.png" width="296">
 
