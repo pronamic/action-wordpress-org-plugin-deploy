@@ -48,6 +48,10 @@ The WordPress.org plugin directory can be seen as an environment where the plugi
 
 <img alt="Screenshot of GitHub repository homepage deployments." src="documentation/github.com_pronamic_wp-salesfeed_home_deployments.png" width="296">
 
+#### Screenshot of GitHub repository environment deployment protection rules
+
+![Screenshot of GitHub repository environment deployment protection rules.](documentation/github.com_pronamic_wp-salesfeed_settings_environments_deployment-protection-rules.png)
+
 ## Example
 
 ```yml
