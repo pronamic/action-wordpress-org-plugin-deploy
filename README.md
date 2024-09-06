@@ -16,7 +16,7 @@ This GitHub action can be used to automatically deploy a WordPress plugin to the
 
 ### Actions secrets and variables
 
-For the WordPress.org login details it can be useful to create a variable and secret at organization level. For example, for the organization Pronamic, the following variables can be used:
+For the WordPress.org login details it can be useful to create a variable and secret at organization level. For example, for the organization Pronamic the following variable and secret are used:
 
 ```
 ${{ vars.WORDPRESS_ORG_PRONAMIC_USERNAME }}
