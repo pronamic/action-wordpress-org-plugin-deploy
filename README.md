@@ -30,6 +30,10 @@ This way, the WordPress login details can be managed in one place and you don't 
 
 ![Screenshot of GitHub organization actions secrets settings.](documentation/github.com_organizations_pronamic_settings_secrets.png)
 
+### Environments
+
+The WordPress.org plugin directory can be seen as an environment where the plugin in a GitHub repository can be deployed to. The advantage of this is that GitHub shows the deployments to WordPress.org. And with protection rules you can delay the deployment to WordPres.org until after approval by 1 or more GitHub users.
+
 ## Example
 
 ```yml
