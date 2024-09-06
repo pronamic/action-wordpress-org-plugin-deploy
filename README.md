@@ -12,6 +12,8 @@ Leveraging PHP instead of bash scripting, this action caters to the preferences 
 
 ## Usage
 
+This GitHub action can be used to automatically deploy a WordPress plugin to the WordPress.org plugin directory whenever a new release is released via GitHub releases. It is important that the GitHub release contains a distribution archive asset with a filename of the `{name}.{version}.zip` format. The [WP-CLI command `wp dist-archive`](https://developer.wordpress.org/cli/commands/dist-archive/) can be used to create a distribution archive with this filename format.
+
 ### Actions secrets and variables
 
 For the WordPress.org login details it can be useful to create a variable and secret at organization level. For example, for the organization Pronamic, the following variables can be used:
