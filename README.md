@@ -14,10 +14,10 @@ Leveraging PHP instead of bash scripting, this action caters to the preferences 
 
 ### Actions secrets and variables
 
-For the WordPress.org login details it can be useful to create a variable and secret at organization level. For Pronamic we work with the following variables:
+For the WordPress.org login details it can be useful to create a variable and secret at organization level. For example, for the organization Pronamic, the following variables can be used:
 
 ```
-${{ vars.WORDPRESS_ORG_PRONAMIC_USERNAME  }}
+${{ vars.WORDPRESS_ORG_PRONAMIC_USERNAME }}
 ```
 
 ```
