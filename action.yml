@@ -37,6 +37,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Install Subversion
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y subversion
     - id: deploy
       run: php ${{ github.action_path }}/deploy.php
       shell: bash
