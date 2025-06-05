@@ -169,7 +169,7 @@ $pattern = "/Stable tag: (.*)/";
 $stable_tag = '';
 
 if ( 1 === preg_match( $pattern, $readme_content, $matches ) ) {
-	$stable_tag = $matches[1];
+	$stable_tag = trim( $matches[1] );
 }
 
 if ( $stable_tag !== $version ) {
